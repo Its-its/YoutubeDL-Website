@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css">
+
+		<title>YT Downloader</title>
+	</head>
+	<body>
+		<div class="top-bar">
+			<div class="top-bar-left">
+				<ul class="dropdown menu" data-dropdown-menu>
+					<li class="menu-text">YTDL</li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/addon">Addon</a></li>
+					<li><a href="/charts">Charts</a></li>
+					<!-- <li><a href="/info">Info</a></li> -->
+				</ul>
+			</div>
+		</div>
+
+		<div class="row"></div>
+
+		<div class="grid-container fluid">
+			<div class="grid-x grid-margin-x">
+				<div class="large-offset-2 large-8 cell">
+					<div class="callout secondary">
+						<form action="/convert" method="post" class="form-control">
+							<div class="row">
+								<div class="large-2 columns">
+									<label>Convert To
+										<select class="input-group-field" name="format">
+											<optgroup label="Audio">
+												<option value="mp3" selected="true">mp3</option>
+												<option value="flv" disabled>flv</option>
+												<option value="wav" disabled>wav</option>
+												<option value="ogg" disabled>ogg</option>
+												<option value="m4a" disabled>m4a</option>
+												<option value="aac" disabled>aac</option>
+											</optgroup>
+											<optgroup label="Video">
+												<option value="mp4" disabled>mp4</option>
+												<option value="webm" disabled>webm</option>
+												<option value="3gp" disabled>3gp</option>
+											</optgroup>
+										</select>
+									</label>
+								</div>
+								<div class="large-8 columns">
+									<label>Insert Video URL or ID
+										<input class="input-group-field" type="text" name="id" placeholder="https://youtu.be/ABCDEFGHIJK">
+									</label>
+								</div>
+								<div class="large-2 columns">
+									<input type="submit" class="button" value="Download" style="margin-bottom: 0;margin-top: 24px;">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+		<script type="text/javascript" src="js/home.js"></script>
+	</body>
+</html>

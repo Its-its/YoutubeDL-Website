@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Tagger</title>
+	</head>
+	<body>
+		<form action="/download" method="post">
+			<select name="title" id="title"></select>
+			<select name="artist" id="artist"></select>
+			<input type="submit" value="Download">
+			<input type="text" name="hash" id="hash" style="display: none;">
+		</form>
+
+		<script>
+			var hash = location.pathname.split('/');
+			hash = hash[hash.length - 1];
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/tag', true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send('hash=' + hash);
+			document.getElementById('hash').value = hash;
+
+			xhr.addEventListener('readystatechange', function(e) {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var response = JSON.parse(xhr.response);
+
+					if (response.error) {
+						console.error(response.error);
+					} else {
+						splitTitle(response.title);
+					}
+				}
+			}, false);
+
+			function splitTitle(title) {
+				var split = [];
+				var del = [ '-', '|' ];
+
+				for (var i = 0; i < del.length; i++) {
+					var c = del[i];
+					split = title.split(c, 2);
+					if (split.length ==  2) {
+						var title = split[0], artist = split[1];
+						
+						['artist', 'title']
+						.forEach(function(name, i) {
+							var spl = document.createElement('option');
+							spl.selected = true;
+							spl.innerText = spl.value = split[i].trim();
+							document.getElementById(name).appendChild(spl);
+
+							spl = document.createElement('option');
+							spl.innerText = spl.value = title.trim();
+							document.getElementById(name).appendChild(spl);
+						});
+
+						break;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

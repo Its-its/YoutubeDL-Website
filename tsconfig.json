@@ -1,0 +1,16 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"moduleResolution": "node",
+		"outDir": "src",
+		"typeRoots": ["node_modules/@types"]
+	},
+	"include": [
+		"ts/**/*"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
